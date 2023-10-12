@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Page1 from './views/Page1';
+import Page2 from './views/Page2';
+import Page3 from './views/Page3';
+import Page4 from './views/Page4';
+
+const Tab = createBottomTabNavigator();
+const screenOptions = {
+  tabBarShowLabel: true,
+  tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold' },
+  headerShown: false,
+  tabBarStyle: {
+    backgroundColor: '#fff',
+  }
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={screenOptions}
+      initialRouteName='Page4'>
+        <Tab.Screen name="Page1" component={Page1} />
+        <Tab.Screen name="Page2" component={Page2} />
+        <Tab.Screen name="Page3" component={Page3} />
+        <Tab.Screen name="Page4" component={Page4} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
